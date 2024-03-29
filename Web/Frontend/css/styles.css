@@ -1,0 +1,83 @@
+.container {
+  width: 100%;
+
+}
+#main {
+  position: fixed;
+  background-color:  rgb(31, 41, 55);
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 950px;
+  height: 600px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+video {
+  width: 100%;
+  max-width: 510px;
+  border-radius: 5px;
+}
+
+.Button_web {
+  display: flex;
+  flex-direction: column;
+  /* Sắp xếp các phần tử bên trong theo chiều dọc */
+}
+
+#main form{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 5px;
+}
+
+#main form input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  
+  border-width: 1px;
+  margin: 5px;
+}
+
+#main form button{
+  width: 20%;
+  padding: 10px;
+  border-radius: 5px;
+  
+  border-width: 1px;
+  margin: 5px;
+}
+
+
+.active {
+  display: block;
+}
+
+.custom-upload {
+  text-align: center;
+}
+
+.custom-file-upload {
+  background-color: #f0f0f0;
+  display: inline-block;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-file-upload:hover {
+  background-color: #e8dfdf;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload span {
+  font-size: 16px;
+}
