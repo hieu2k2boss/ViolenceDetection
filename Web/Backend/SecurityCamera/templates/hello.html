@@ -14,15 +14,13 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="#"><img src="path_to_your_image.jpg"
-                                alt="Link to another page"></a></li>
+                    <li><a href="#"  class="centered-link" ><img src="../../image/logo uet.png"alt="Link to another page" height="30px" width="30px"></a></li>
                     <li><a href="#">Project</a></li>
                     <li><a href="#">Name</a></li>
                     <li><a href="#">Doc</a></li>
                     <li><a href="#">Account</a></li>
                 </ul>
             </nav>
-
         </header>
         <div class="HeaderNext ">
             <nav>
@@ -55,27 +53,21 @@
                     <div class="container">
                         <div class="container">
                             <div class="box" id="box1" style="width: 110px;">
-                                <div class="custom-upload">
-                                    <form id="uploadForm"
-                                        enctype="multipart/form-data">
-                                        <label for="videoFile"
-                                            class="custom-file-upload">
-                                            <span>Chọn video</span>
-                                            <input type="file" id="videoFile"
-                                                accept="video/*"
-                                                name="videoFile">
-                                        </label>
-                                    </form>
-                                </div>
-                                <button>try web cam</button>
-                                <button>try web cam</button>
+                                <div class="custom-upload" onclick="document.getElementById('fileInput').click();">
+                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                    <span class="upload-text">Chọn Video</span>
+                                    <input type="file" id="fileInput" onchange="displayFileName()">
+                                  </div>
+                                  <div class="custom-upload" onclick="document.getElementById('fileInput').click();">
+                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                    <span class="upload-text">Chọn model</span>
+                                    <input type="file" id="fileInput" onchange="displayFileName()">
+                                  </div>
+                                
+                                <button>Bật Web cam</button>
                             </div>
                             <div id="box2" class="box" style="width: 550px;">
-                            <!--    <video height="300px" controls muted>
-                                    <source src="../../Video_Test/Video1.mp4"
-                                        type="video/mp4">
-                                </video>
-                                 -->
+
                                 <div id="webcam-feed">
                                     <img src="{% url 'webcam_feed' %}" height="350px" width="500px" alt="Webcam Feed">
                                 </div>
@@ -83,25 +75,19 @@
                             </div>
                             <div class="box" id="box3" style="width: 110px;">
                                 <div class="slider-container">
-                                    <p>Value: <span id="sliderValue">0</span></p>
+                                    <p style="color: white;">Value: <span id="sliderValue">0</span></p>
                                     <input type="range" min="0" max="100"
-                                        value="0" class="slider"
-                                        id="mySlider">
-                                </div>
-                                <div class="slider-container">
-                                    <p>Value: <span id="sliderValue">0</span></p>
-                                    <input type="range" min="0" max="100"
-                                        value="50" class="slider"
-                                        id="mySlider">
-                                </div>
+                                           value="50" class="slider"
+                                           id="mySlider" oninput="updateSliderValue()">
+                                  </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="tab2" class="tabcontent">
-                    <canvas id="salesChart" width="700px"
-                        height="400px"></canvas>
+                <div id="tab2" class="tabcontent" style="width: 100%;">
+                    <canvas id="myChart"></canvas>
                 </div>
 
                 <div id="tab3" class="tabcontent">
@@ -113,7 +99,5 @@
                 </div>
             </div>
         </div>
-        
-
     </body>
 </html>

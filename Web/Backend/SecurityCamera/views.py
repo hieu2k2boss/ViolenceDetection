@@ -8,13 +8,16 @@ from keras.layers import *
 from keras.models import Sequential
 from keras.applications.mobilenet_v2 import MobileNetV2
 from ultralytics import YOLO
+import requests
 
-input_video_file_path = "H:/DaiHoc/DoAn/Code/ViolenceDetection/Video_Test/Video4.mp4"
+
+input_video_file_path = "H:/DaiHoc/DoAn/Code/ViolenceDetection/Video_Test/Video10.avi"
 pathModelYolo = 'H:/DaiHoc/DoAn/Code/ViolenceDetection/model/yolov8n.pt'
 PathModel = "H:/DaiHoc/DoAn/Code/ViolenceDetection/model/violence_mobile_net.h5"
 CLASSES_LIST = ["NonViolence","Violence"]
 IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
 SEQUENCE_LENGTH = 16
+number = 0
 
 model_yolo = YOLO(pathModelYolo)
 # mobilenet
@@ -85,7 +88,23 @@ def webcam_feed(request):
             ret, frame = cap.read()
             results = model_yolo.track(frame,conf=0.6, classes=0, persist=True)
             annotated_frame = results[0].plot()
-            
+            #print (len(results[0].boxes.data.numpy()))
+            number = len(results[0].boxes.data.numpy())
+            if number >0:
+                data = {
+                        "id": 1,
+                        "NumberPeople": number,
+                        "Date": "2024-04-01"
+                    }
+                url = "http://127.0.0.1:8000/Result/"
+                response = requests.put(url, data=data)
+                # Kiểm tra mã trạng thái của response
+                if response.status_code == 200:
+                    print("PUT request đã được thực hiện thành công.")
+                else:
+                    print("Có lỗi xảy ra khi thực hiện PUT request.")
+                    
+                    
             if not ret:
                 break
             resized_frame = cv2.resize(frame, (IMAGE_HEIGHT, IMAGE_WIDTH))
@@ -137,4 +156,5 @@ def ProcessVideo(request):
         cv2.destroyAllWindows()
         
         return JsonResponse({'success': True})
-    return render(request, 'hello.html')
+    return render(request, 'hello.html' ,{'number': number})
+

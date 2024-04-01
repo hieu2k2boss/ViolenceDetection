@@ -38,3 +38,9 @@
     cursor: pointer;
   }
   
+  .slider-container {
+    margin-top: 20px;
+  }
+  #sliderValue {
+    color: #ffffff;
+  }

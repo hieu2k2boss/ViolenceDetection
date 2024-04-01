@@ -80,7 +80,9 @@ def predict_video(video_file_path, SEQUENCE_LENGTH):
         success, frame = video_reader.read() 
         results = model_yolo.track(frame,conf=0.6, classes=0, persist=True)
         annotated_frame = results[0].plot()
+        #Số người trong hình 
         
+        print (len(results[0].boxes.data.numpy()))
         if not success:
             break
         # Resize the Frame to fixed Dimensions.
