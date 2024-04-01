@@ -9,9 +9,9 @@ from keras.models import Sequential
 from keras.applications.mobilenet_v2 import MobileNetV2
 from ultralytics import YOLO
 import requests
+from datetime import datetime
 
-
-input_video_file_path = "H:/DaiHoc/DoAn/Code/ViolenceDetection/Video_Test/Video10.avi"
+input_video_file_path = ""
 pathModelYolo = 'H:/DaiHoc/DoAn/Code/ViolenceDetection/model/yolov8n.pt'
 PathModel = "H:/DaiHoc/DoAn/Code/ViolenceDetection/model/violence_mobile_net.h5"
 CLASSES_LIST = ["NonViolence","Violence"]
@@ -71,16 +71,40 @@ def create_model():
 MoBiLSTM_model = create_model()
 MoBiLSTM_model.load_weights(PathModel) 
 
+# Đọc API 
+def fetch_data_from_api(api_url):
+    try:
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print("Error:", response.status_code)
+            return None
+    except requests.exceptions.RequestException as e:
+        print("Error:", e)
+        return None
+
+def ReadCamera():
+    api_url = "http://127.0.0.1:8000/MyAPI/"
+    
+    data = fetch_data_from_api(api_url)
+    if data:
+        if (data[0]['path_video'] =="0"):
+            return 0
+        else:
+            return data[0]['path_video']
+
 def webcam_feed(request):
+    input_video_file_path = ReadCamera()
+    print(input_video_file_path)
     cap = cv2.VideoCapture(input_video_file_path)
     def generate_frames():      
         frames_list = []
         predicted_class_name = ''
         count = 0 
         text = ""
-    
         font = cv2.FONT_HERSHEY_SIMPLEX
-        font_scale = 1
+        font_scale = 2
         font_color = (0, 255, 0)  # Màu trắng
         thickness = 2
         x, y = 50, 50  # Vị trí để viết chữ
@@ -90,7 +114,11 @@ def webcam_feed(request):
             annotated_frame = results[0].plot()
             #print (len(results[0].boxes.data.numpy()))
             number = len(results[0].boxes.data.numpy())
+            
             if number >0:
+                now = datetime.now()
+                current_hour = now.hour
+                current_minute = now.minute
                 data = {
                         "id": 1,
                         "NumberPeople": number,
@@ -103,7 +131,6 @@ def webcam_feed(request):
                     print("PUT request đã được thực hiện thành công.")
                 else:
                     print("Có lỗi xảy ra khi thực hiện PUT request.")
-                    
                     
             if not ret:
                 break
@@ -158,3 +185,6 @@ def ProcessVideo(request):
         return JsonResponse({'success': True})
     return render(request, 'hello.html' ,{'number': number})
 
+def Tab(request):
+
+    return render(request, 'tab.html')

@@ -15,15 +15,15 @@ def fetch_data_from_api(api_url):
 
 def main():
     api_url = "http://127.0.0.1:8000/Result/"
-    while True:
-        data = fetch_data_from_api(api_url)
-        ''' if data:
-            print("Data:", data[0]['path_video'])
-            if (data[0]['path_video'] =="0"):
-                print("Bật Cam")
-            if (data[0]['path_video'] =="0"):
-                print("Bật Video")'''
-        print(data)
+    
+    data = fetch_data_from_api(api_url)
+    if data:
+        print("Data:", data[0]['path_video'])
+        if (data[0]['path_video'] =="0"):
+            print("Bật Cam")
+        if (data[0]['path_video'] =="0"):
+            print("Bật Video")
+        
         # Chờ 2 giây trước khi gửi yêu cầu tiếp theo
         time.sleep(2)
 if __name__ == "__main__":
