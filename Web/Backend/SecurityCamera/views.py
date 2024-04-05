@@ -185,6 +185,4 @@ def ProcessVideo(request):
         return JsonResponse({'success': True})
     return render(request, 'hello.html' ,{'number': number})
 
-def Tab(request):
 
-    return render(request, 'tab.html')
