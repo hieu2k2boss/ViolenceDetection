@@ -15,8 +15,9 @@ function App() {
   }
 
   return (
+
     <div>
-      <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">         
           Navbar</Navbar.Brand>
         <Nav className="mr-auto" >
@@ -29,7 +30,8 @@ function App() {
         {currentPage === 'home' && <Home handleClick={handleClick}/>}
         {currentPage === 'about' && <Camera />}
         {currentPage === 'contact' && <Contact />}
-      </div>
+      </div> 
+      
     </div>
   );
 }
