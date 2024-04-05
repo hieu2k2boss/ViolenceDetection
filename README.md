@@ -33,7 +33,7 @@ Cài đặt các thư viện cần thiết
 
 2. **Test**
    
-## How to run 
+## How to run project 
 1. **Backend**
 
 2. **Frontend**
