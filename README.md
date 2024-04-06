@@ -37,6 +37,8 @@ Cài đặt các thư viện cần thiết
 1. **Backend**
 
 2. **Frontend**
+
+![web](image/web.gif)
    
 ## References
 - [Django Framework Documentation](https://docs.djangoproject.com/en/5.0/)
