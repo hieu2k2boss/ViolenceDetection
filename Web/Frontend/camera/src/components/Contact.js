@@ -34,6 +34,9 @@ const Contact = () => {
             <a href="https://www.facebook.com/profile.php?id=100008664642659">
               <img src={"/facebook.png"} width="100px" height="100px" />
             </a>
+            <a href="https://www.facebook.com/profile.php?id=100008664642659" style={{ textDecoration: 'none'}}>
+            Contact with facebook
+            </a>
           </div>
         </div>
 

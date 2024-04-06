@@ -37,8 +37,7 @@ const Content = () => {
           <div class="card-body">
             <h5 class="card-title">Statistics</h5>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              Thống kê lượng người ra vào tại các thời điểm. Từ đó đưa ra các chính sách, chiến lược phù hợp.
             </p>
   
           </div>
@@ -52,10 +51,9 @@ const Content = () => {
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              Hệ thống giúp phát hiện các hành vi bạo lực, giúp ngăn ngừa sớm các nguy hiểm. 
             </p>
-         
+
           </div>
         </div>
       </div>
