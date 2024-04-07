@@ -110,7 +110,16 @@ def webcam_feed(request):
         x, y = 50, 50  # Vị trí để viết chữ
         while True:
             ret, frame = cap.read()
-            results = model_yolo.track(frame,conf=0.6, classes=0, persist=True)
+            
+            b, g, r = cv2.split(frame)
+            
+            blurred_b = cv2.GaussianBlur(b, (5, 5), 0)
+            blurred_g = cv2.GaussianBlur(g, (5, 5), 0)
+            blurred_r = cv2.GaussianBlur(r, (5, 5), 0)
+
+            frame = cv2.merge([blurred_b, blurred_g, blurred_r])
+
+            results = model_yolo.track(frame,conf=0.6, iou=0.6,classes=0, persist=True, tracker="bytetrack.yaml")
             annotated_frame = results[0].plot()
             #print (len(results[0].boxes.data.numpy()))
             number = len(results[0].boxes.data.numpy())
